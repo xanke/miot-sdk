@@ -1,0 +1,10 @@
+{
+        "name": "project-edc-bhf_light-bhf01",
+        "version": "1.0.1",
+        "scripts":{
+            "start":"node ../../bin/runProject.js"
+        },
+        "dependencies":{
+            
+        }
+    }
