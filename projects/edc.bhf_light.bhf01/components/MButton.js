@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
@@ -33,16 +33,16 @@ export class MButton extends React.Component {
   }
   
   render() {
-    const { icon = 'light' } = this.props
+    const { icon = 'light', ...touchableProps } = this.props
     let iconImg
     if (icon === 'light' ) iconImg = require('../assets/icon/light.png')
     if (icon === 'power' ) iconImg = require('../assets/icon/power.png')
     if (icon === 'fan' ) iconImg = require('../assets/icon/fan.png')
     return (
-      <View style={styles.container}>
+      <TouchableOpacity style={styles.container} {...touchableProps}>
         <Image style={styles.icon} source={iconImg}></Image>
         <Text style={styles.text}>{this.props.name}</Text>
-      </View>
+      </TouchableOpacity>
     )
   }
 }

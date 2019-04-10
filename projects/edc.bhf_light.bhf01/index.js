@@ -39,18 +39,18 @@ class App extends React.Component {
     // this.setState({
     //   sendData: `${Date.now()}: ${JSON.stringify(params)}`
     // })
-    this.state.sendData = `${Date.now()}: ${method} - ${JSON.stringify(params)}`
+    this.state.sendData = `> ${Date.now()}: ${method} - ${JSON.stringify(params)}`
     // const method = 'power_switch'
     Device.getDeviceWifi()
       .callMethod(method, params)
       .then(res => {
         this.setState({
-          data: `${Date.now()}: ${JSON.stringify(err)}`
+          data: `< ${Date.now()}: ${JSON.stringify(err)}`
         })
       })
       .catch(err => {
         this.setState({
-          data: `${Date.now()}: ${JSON.stringify(err)}`
+          data: `< ${Date.now()}: ${JSON.stringify(err)}`
         })
       })
   }
@@ -64,14 +64,13 @@ class App extends React.Component {
             navigation.goBack()
           }}
         />
-        <RkButton rkType='clear link'>
-          <RkText rkType='accent'>18 Likes</RkText>
+        <RkButton onPress={() => this.fetchSet('set_light_switch', {params: [true]})} rkType='clear link'>
+          <RkText rkType='accent'>TEST</RkText>
         </RkButton>
         <RkSwitch
           value={this.state.value}
           onValueChange={this.onSwitchValueChange}
         />
-
         <Text>灯光控制</Text>
         <View style={styles.buttonContainer}>
           <MButton icon="light" onPress={() => this.fetchSet('set_light_switch', {params: [true]})} name='灯光开' />
