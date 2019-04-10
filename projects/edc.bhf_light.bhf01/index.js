@@ -17,7 +17,7 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      action: '3232',
+      action: '',
       sendData: '',
       data: '',
       value: false
@@ -35,17 +35,12 @@ class App extends React.Component {
   };
 
   fetchData(method, params) {
-    // const params = { id: 1, method: 'props', params: { power_switch: true } }
-    // this.setState({
-    //   sendData: `${Date.now()}: ${JSON.stringify(params)}`
-    // })
     this.state.sendData = `> ${Date.now()}: ${method} - ${JSON.stringify(params)}`
-    // const method = 'power_switch'
     Device.getDeviceWifi()
       .callMethod(method, params)
       .then(res => {
         this.setState({
-          data: `< ${Date.now()}: ${JSON.stringify(err)}`
+          data: `< ${Date.now()}: ${JSON.stringify(res)}`
         })
       })
       .catch(err => {
@@ -64,7 +59,7 @@ class App extends React.Component {
             navigation.goBack()
           }}
         />
-        <RkButton onPress={() => this.fetchSet('set_light_switch', {params: [true]})} rkType='clear link'>
+        <RkButton onPress={() => this.fetchSet('set_light_switch', {params: {light_switch: true}})} rkType='clear link'>
           <RkText rkType='accent'>TEST</RkText>
         </RkButton>
         <RkSwitch
